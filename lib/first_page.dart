@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_maserclass/home_page.dart';
+import 'package:flutter_maserclass/pages/home_page.dart';
 import 'package:flutter_maserclass/profile_page.dart';
 import 'package:flutter_maserclass/setting_page.dart';
 
