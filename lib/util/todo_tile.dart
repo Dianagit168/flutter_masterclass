@@ -4,12 +4,14 @@ class TodoTile extends StatelessWidget {
   final String taskName;
   final bool taskComplete;
   final void Function(bool?)? onChanged;
+  final void Function() onDelete;
 
   const TodoTile(
       {super.key,
       required this.taskName,
       required this.taskComplete,
-      this.onChanged});
+      required this.onChanged,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,10 @@ class TodoTile extends StatelessWidget {
                   decoration: taskComplete
                       ? TextDecoration.lineThrough
                       : TextDecoration.none),
+            ),
+            IconButton(
+              onPressed: onDelete,
+              icon: const Icon(Icons.delete),
             )
           ],
         ),
