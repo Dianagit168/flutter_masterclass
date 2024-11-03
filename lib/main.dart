@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_maserclass/first_page.dart';
-import 'package:flutter_maserclass/pages/home_page.dart';
 
-void main() {
+import 'package:flutter_maserclass/pages/home_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+void main() async {
+  await Hive.initFlutter();
+  var box = await Hive.openBox('mybox');
+
   runApp(const MyApp());
 }
 

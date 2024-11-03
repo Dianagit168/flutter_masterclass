@@ -37,6 +37,7 @@ class TodoTile extends StatelessWidget {
                       ? TextDecoration.lineThrough
                       : TextDecoration.none),
             ),
+            const Spacer(),
             IconButton(
               onPressed: onDelete,
               icon: const Icon(Icons.delete),
