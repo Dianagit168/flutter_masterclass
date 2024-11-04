@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_maserclass/e_pages/intro_pages.dart';
 
 import 'package:flutter_maserclass/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const HomePage(),
+      home: const IntroPages(),
     );
   }
 }
