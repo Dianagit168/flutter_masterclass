@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_maserclass/pages/home_page.dart';
+import 'package:flutter_maserclass/theme/theme.dart';
+import 'package:flutter_maserclass/theme/theme_provider.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
   // var box = await Hive.openBox('mybox');
 
   runApp(
-    const MyApp(),
+    ChangeNotifierProvider(
+        create: (BuildContext context) => ThemeProvider(),
+        child: const MyApp()),
   );
 }
 
@@ -18,10 +24,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-      ),
-      home: const MyHomePage(),
+      theme: context.watch<ThemeProvider>().themeData,
+      home: const HomePage(),
     );
   }
 }
