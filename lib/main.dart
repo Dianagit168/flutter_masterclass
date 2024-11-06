@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_maserclass/e_model/cart_model.dart';
 import 'package:flutter_maserclass/e_pages/intro_pages.dart';
 
-import 'package:flutter_maserclass/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
-  var box = await Hive.openBox('mybox');
+  // var box = await Hive.openBox('mybox');
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) => CartModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
