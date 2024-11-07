@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_maserclass/pages/home_page.dart';
-import 'package:flutter_maserclass/theme/theme.dart';
+import 'package:flutter_maserclass/model/shop_provider.dart';
+import 'package:flutter_maserclass/pages/cart_page.dart';
+import 'package:flutter_maserclass/pages/intropage.dart';
+import 'package:flutter_maserclass/pages/shop_page.dart';
+import 'package:flutter_maserclass/theme/light_theme.dart';
 import 'package:flutter_maserclass/theme/theme_provider.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -11,9 +14,14 @@ void main() async {
   // var box = await Hive.openBox('mybox');
 
   runApp(
-    ChangeNotifierProvider(
-        create: (BuildContext context) => ThemeProvider(),
-        child: const MyApp()),
+    MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ProduProvider(),
+      )
+    ], child: const MyApp()),
   );
 }
 
@@ -24,40 +32,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: context.watch<ThemeProvider>().themeData,
-      home: const HomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.deepPurple[200],
-      body: GridView.builder(
-        itemCount: 100,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 8,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            //  padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Icon(
-              Icons.favorite,
-              color: Colors.red,
-            ),
-          );
-        },
-      ),
+      theme: lightMode,
+      home: const IntroPage(),
+      initialRoute: '/intro_page',
+      routes: {
+        '/intro_page': (context) => const IntroPage(),
+        '/shop_page': (context) => const ShopPage(),
+        '/cart_page': (context) => const CartPage(),
+      },
     );
   }
 }
