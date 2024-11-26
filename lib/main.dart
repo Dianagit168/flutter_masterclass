@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_maserclass/database/habit_database.dart';
 import 'package:flutter_maserclass/model/shop_provider.dart';
 import 'package:flutter_maserclass/pages/cart_page.dart';
 import 'package:flutter_maserclass/pages/intropage.dart';
-import 'package:flutter_maserclass/pages/shop_page.dart';
-import 'package:flutter_maserclass/theme/light_theme.dart';
+import 'package:flutter_maserclass/pages/home_page.dart';
+
 import 'package:flutter_maserclass/theme/theme_provider.dart';
 
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  await Hive.initFlutter();
-  // var box = await Hive.openBox('mybox');
+  WidgetsFlutterBinding.ensureInitialized();
+
+// Initialize database
+  await HabitDatabase.initialize();
+  await HabitDatabase().saveFirstLaunchDate();
+
+  // await Hive.initFlutter();
+  // // var box = await Hive.openBox('mybox');
 
   runApp(
     MultiProvider(providers: [
@@ -19,7 +25,7 @@ void main() async {
         create: (context) => ThemeProvider(),
       ),
       ChangeNotifierProvider(
-        create: (context) => ProduProvider(),
+        create: (context) => HabitDatabase(),
       )
     ], child: const MyApp()),
   );
@@ -32,12 +38,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: lightMode,
-      home: const IntroPage(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      // home: const IntroPage(),
       initialRoute: '/intro_page',
       routes: {
         '/intro_page': (context) => const IntroPage(),
-        '/shop_page': (context) => const ShopPage(),
+        '/shop_page': (context) => const HomePage(),
         '/cart_page': (context) => const CartPage(),
       },
     );
