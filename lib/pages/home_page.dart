@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_maserclass/theme/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_maserclass/components/my_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,16 +13,7 @@ class HomePage extends StatelessWidget {
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Home Page'),
       ),
-      drawer: Drawer(
-        child: Center(
-          child: CupertinoSwitch(
-            value: Provider.of<ThemeProvider>(context).isDarkMode,
-            onChanged: (value) =>
-                Provider.of<ThemeProvider>(context, listen: false)
-                    .toggleTheme(),
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       // body: Column(
       //   children: [
       //     Center(

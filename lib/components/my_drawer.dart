@@ -34,6 +34,12 @@ class MyDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/cart_page');
             },
           ),
+          CupertinoSwitch(
+            value: Provider.of<ThemeProvider>(context).isDarkMode,
+            onChanged: (value) =>
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toggleTheme(),
+          ),
           const Spacer(),
           MyListTile(
             iconData: Icons.logout,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_maserclass/database/habit_database.dart';
-import 'package:flutter_maserclass/model/shop_provider.dart';
 import 'package:flutter_maserclass/pages/cart_page.dart';
 import 'package:flutter_maserclass/pages/intropage.dart';
 import 'package:flutter_maserclass/pages/home_page.dart';
@@ -12,7 +11,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-// Initialize database
+// // Initialize database
   await HabitDatabase.initialize();
   await HabitDatabase().saveFirstLaunchDate();
 

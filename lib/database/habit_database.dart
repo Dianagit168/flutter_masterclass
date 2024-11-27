@@ -11,7 +11,6 @@ class HabitDatabase extends ChangeNotifier {
 
   static Future<void> initialize() async {
     final dir = await getApplicationDocumentsDirectory();
-
     isar = await Isar.open(
       [HabitSchema, AppSettingSchema],
       directory: dir.path,
@@ -39,7 +38,7 @@ class HabitDatabase extends ChangeNotifier {
 
   // C R E A T E - add a new habit
   Future<void> addHabit(String habitName) async {
-    // create s new habit
+    // create a new habit
     final newHabit = Habit()..name = habitName;
 
     //save to database
@@ -51,7 +50,7 @@ class HabitDatabase extends ChangeNotifier {
 
   // R E A D - read saved habit frome db
   Future<void> readHabits() async {
-    // Fetch all habit frome db
+    // Fetch all habit from db
     List<Habit> fetchedHabits = await isar.habits.where().findAll();
 
     // Give to current habits
@@ -64,7 +63,7 @@ class HabitDatabase extends ChangeNotifier {
 
   // U P D A T E - check habit on and off
   Future<void> updateHabitCompletion(int id, bool isCompleted) async {
-// find specific habit
+    // find specific habit
     final habit = await isar.habits.get(id);
 
     // update completion status
@@ -74,9 +73,11 @@ class HabitDatabase extends ChangeNotifier {
         if (isCompleted && !habit.completedDays.contains(DateTime.now())) {
           //today
           final today = DateTime.now();
-          //addb the current time date if it is not already in the list
+
+          //add the current time date if it is not already in the list
           habit.completedDays.add(DateTime(today.year, today.month, today.day));
         }
+
         // if habit is NOT completed -> remove current date from the list
         else {
           // remove the current date if the habit is maked as not completed
