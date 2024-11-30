@@ -18,6 +18,7 @@ class HabitDatabase extends ChangeNotifier {
   }
 
   // Save first date of app startup (for heatmap)
+
   Future<void> saveFirstLaunchDate() async {
     final existingSetting = await isar.appSettings.where().findFirst();
     if (existingSetting == null) {
@@ -27,6 +28,7 @@ class HabitDatabase extends ChangeNotifier {
   }
 
   // Get first date of app startup (for heatmap)
+
   Future<DateTime?> getFirstLaunchDate() async {
     final setting = await isar.appSettings.where().findFirst();
 
@@ -34,9 +36,11 @@ class HabitDatabase extends ChangeNotifier {
   }
 
   // List of habit
+
   final List<Habit> currentHabits = [];
 
   // C R E A T E - add a new habit
+
   Future<void> addHabit(String habitName) async {
     // create a new habit
     final newHabit = Habit()..name = habitName;
@@ -49,6 +53,7 @@ class HabitDatabase extends ChangeNotifier {
   }
 
   // R E A D - read saved habit frome db
+
   Future<void> readHabits() async {
     // Fetch all habit from db
     List<Habit> fetchedHabits = await isar.habits.where().findAll();
@@ -62,6 +67,7 @@ class HabitDatabase extends ChangeNotifier {
   }
 
   // U P D A T E - check habit on and off
+
   Future<void> updateHabitCompletion(int id, bool isCompleted) async {
     // find specific habit
     final habit = await isar.habits.get(id);
