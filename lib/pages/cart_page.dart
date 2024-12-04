@@ -67,7 +67,7 @@ class CartPage extends StatelessWidget {
                 ),
                 MyButton(
                   onTap: () {},
-                  child: const Text("Pay Now!"),
+                  text: 'Pay Now!',
                 )
               ],
             ),

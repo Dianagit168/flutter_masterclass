@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_maserclass/database/habit_database.dart';
+import 'package:flutter_maserclass/pages/auth_page/login_page.dart';
 import 'package:flutter_maserclass/pages/cart_page.dart';
 import 'package:flutter_maserclass/pages/intropage.dart';
 import 'package:flutter_maserclass/pages/home_page.dart';
@@ -39,8 +40,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: Provider.of<ThemeProvider>(context).themeData,
       // home: const IntroPage(),
-      initialRoute: '/intro_page',
+      initialRoute: '/login_page',
       routes: {
+        '/login_page': (context) => LoginPage(),
         '/intro_page': (context) => const IntroPage(),
         '/shop_page': (context) => const HomePage(),
         '/cart_page': (context) => const CartPage(),
